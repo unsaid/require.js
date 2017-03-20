@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>require</title>
+  <link rel="stylesheet" href="../libs/bootstrap-3.3.7-dist/css/bootstrap.css">
+</head>
+<body>
+    <!-- 模态框 -->
+  <div id="mymodel" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Modal title</h4>
+      </div>
+      <div class="modal-body">
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+    <!-- 模态框结束 -->
+   <input id="num1" type="text"> + 
+   <input id="num2" type="text">
+   <input id="add"  type="button" value="=">
+   <input id="result" type="text">
+  <!-- 1.引包 -->
+  <script src="../libs/requirejs/require.js"></script>
+  <script>
+    // 4.载入我们的代码
+    // 配置别名
+    require.config({
+      baseUrl : './', // 让require参数的相对路径变为./libs
+      paths : { // 别名里的路径也是相对与baseUrl的
+        // 以后就可以直接用'jquery'来代替后面的路径了!
+        jquery : '../libs/jquery-1.12.2/dist/jquery',
+        // 如果遇到不支持AMD规范方式模块化,需要配置别名
+        boot : '../libs/bootstrap-3.3.7-dist/js/bootstrap'
+      },
+      // 以下内容配置之后，当我们在代码中引用bootstrap('boot')时,requirejs会自动帮助我们引入jquery
+      shim:{
+        boot :{
+          deps : ['jquery']
+        }
+      }
+    })
+    require(['./my'])
+  </script>
+  
+
+</body>
+</html>
